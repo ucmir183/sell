@@ -23,6 +23,7 @@ func init() {
 	beego.AutoRouter(&controllers.EnvController{})
 	beego.AutoRouter(&controllers.CodeController{})
 	beego.AutoRouter(&controllers.CateController{})
+	beego.AutoRouter(&controllers.GoodsController{})
 
 	beego.AutoRouter(&controllers.GroupController{})
 	beego.AutoRouter(&controllers.AuthController{})

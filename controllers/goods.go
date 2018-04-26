@@ -7,16 +7,16 @@ import (
 	"time"
 )
 
-type CateController struct {
+type GoodsController struct {
 	BaseController
 }
 
-func ( self *CateController ) List() {
-	self.Data["pageTitle"] = "商品栏目"
+func ( self *GoodsController ) List() {
+	self.Data["pageTitle"] = "商品列表"
 	self.display()
 }
 
-func(self *CateController) Table() {
+func(self *GoodsController) Table() {
 	page,err := self.GetInt("page")
 	if err != nil {
 		page = 1
@@ -39,7 +39,7 @@ func(self *CateController) Table() {
 		filters = append(filters,"name__contains",name)
 	}
 
-	result,count := models.CateGetList(page,self.pageSize,filters...)
+	result,count := models.GoodsGetList(page,self.pageSize,filters...)
 
 
 	list := make([]map[string]interface{},len(result))
@@ -59,23 +59,23 @@ func(self *CateController) Table() {
 
 }
 
-func (self *CateController)Add() {
+func (self *GoodsController)Add() {
 	cate_list := models.CateGetAllList()
 
-	self.Data["pageTitle"] = "添加栏目"
+	self.Data["pageTitle"] = "添加商品"
 	self.Data["cate_list"] = cate_list
 	self.display()
 
 }
 
 
-func (self *CateController) Edit() {
+func (self *GoodsController) Edit() {
 	id,_ := self.GetInt("id",0)
 	cate_list := models.CateGetAllList()
 
-	info := models.CateGetById(id)
+	info := models.GoodsGetById(id)
 
-	self.Data["pageTitle"] = "修改栏目"
+	self.Data["pageTitle"] = "修改商品"
 
 	self.Data["cate_list"] = cate_list
 	self.Data["info"] = info
@@ -83,19 +83,22 @@ func (self *CateController) Edit() {
 
 }
 
-func (self *CateController) AjaxSave() {
+func (self *GoodsController) AjaxSave() {
 	id,_ := self.GetInt("id",0)
 	if id == 0 {
-		m := new(models.Cate)
+		m := new(models.Goods)
 		m.Name = strings.TrimSpace(self.GetString("name"))
-		m.Pid,_ = self.GetInt("pid",0)
+		m.Desc = strings.TrimSpace(self.GetString("desc"))
+		m.Price,_ = self.GetFloat("price")
+		m.CateId,_ = self.GetInt("cate_id",0)
+		m.Inventory,_ = self.GetInt("inventory",0)
 
 		m.CreateId = self.userId
 		m.UpdateId = self.userId
 		m.CreateTime = time.Now().Unix()
 		m.UpdateTime = time.Now().Unix()
 
-		if _,err := models.CateAdd(m); err != nil {
+		if _,err := models.GoodsAdd(m); err != nil {
 			self.ajaxMsg(err.Error(),MSG_ERR)
 		}
 
@@ -117,10 +120,10 @@ func (self *CateController) AjaxSave() {
 
 }
 
-func (self *CateController) AjaxDel() {
+func (self *GoodsController) AjaxDel() {
 
 	id, _ := self.GetInt("id")
-	info := models.CateGetById(id)
+	info := models.GoodsGetById(id)
 	if info == nil {
 		self.ajaxMsg("未找到相应的信息",MSG_ERR)
 	}

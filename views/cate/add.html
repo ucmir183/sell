@@ -6,6 +6,7 @@
         <label class="layui-form-label">上级栏目</label>
         <div class="layui-input-inline">
             <select name="pid">
+                <option value="">顶级栏目</option>
             {{range $k,$value := .cate_list}}
                 <option value="{{$value.Id}}}">{{$value.Name}}</option>
             {{end}}
@@ -46,7 +47,7 @@ var $;
             $.post('{{urlfor "CateController.AjaxSave"}}', form_data, function (out) {
                 if (out.status == 0) {
                     layer.msg("操作成功",{icon: 1},function () {
-                        window.location.href='{{urlfor "CodeController.List"}}'
+                        window.location.href='{{urlfor "CateController.List"}}'
                     })
                 } else {
                     layer.msg(out.message)
