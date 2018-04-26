@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"strings"
-	"github.com/george518/PPGo_ApiAdmin/models"
+	"sell/models"
 	"github.com/astaxie/beego"
 	"time"
 )
@@ -76,6 +76,7 @@ func (self *CateController) Edit() {
 	info := models.CateGetById(id)
 
 	self.Data["pageTitle"] = "修改栏目"
+
 	self.Data["cate_list"] = cate_list
 	self.Data["info"] = info
 	self.display()

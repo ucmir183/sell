@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/george518/PPGo_ApiAdmin/models"
-	_ "github.com/george518/PPGo_ApiAdmin/routers"
+	"sell/models"
+	_ "sell/routers"
 
 	"github.com/astaxie/beego"
 )

@@ -2,7 +2,7 @@ package routers
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/george518/PPGo_ApiAdmin/controllers"
+	"sell/controllers"
 )
 
 func init() {
