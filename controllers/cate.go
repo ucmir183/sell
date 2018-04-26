@@ -116,3 +116,23 @@ func AjaxSave(self *CateController) {
 	self.ajaxMsg("保存成功",MSG_OK)
 
 }
+
+func (self *CateController) AjaxDel() {
+
+	id, _ := self.GetInt("id")
+	info := models.CateGetById(id)
+	if info == nil {
+		self.ajaxMsg("未找到相应的信息",MSG_ERR)
+	}
+
+	info.UpdateTime = time.Now().Unix()
+	info.UpdateId = self.userId
+	info.Status = 0
+	info.Id = id
+
+
+	if _,err := info.Update(); err != nil {
+		self.ajaxMsg(err.Error(), MSG_ERR)
+	}
+	self.ajaxMsg("删除成功", MSG_OK)
+}

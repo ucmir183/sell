@@ -66,11 +66,11 @@
             if(obj.event === 'detail'){
                 //layer.msg('ID：'+ data.id + ' 的查看操作');
             } else if(obj.event === 'del'){
-                layer.confirm('真的删除【'+data.code+'】么', function(index){
+                layer.confirm('确定要删除【'+data.name+'】么', function(index){
                     var jsData = {'id':data.id}
-                    $.post('{{urlfor "CodeController.AjaxDel"}}', jsData, function (out) {
+                    $.post('{{urlfor "CateController.AjaxDel"}}', jsData, function (out) {
                         if (out.status == 0) {
-                            layer.alert('删除成功了', {icon: 1},function(index){
+                            layer.alert('删除成功', {icon: 1},function(index){
                                 layer.close(index);
                                 window.location.reload();
                             });
