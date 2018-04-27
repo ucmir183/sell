@@ -88,7 +88,8 @@ func (self *GoodsController) AjaxSave() {
 	if id == 0 {
 		m := new(models.Goods)
 		m.Name = strings.TrimSpace(self.GetString("name"))
-		m.Desc = strings.TrimSpace(self.GetString("desc"))
+		m.Name = strings.TrimSpace(self.GetString("name"))
+		m.Img = strings.TrimSpace(self.GetString("img"))
 		m.Price,_ = self.GetFloat("price")
 		m.CateId,_ = self.GetInt("cate_id",0)
 		m.Inventory,_ = self.GetInt("inventory",0)
@@ -110,6 +111,7 @@ func (self *GoodsController) AjaxSave() {
 	info := models.GoodsGetById(id)
 	info.Name = strings.TrimSpace(self.GetString("name"))
 	info.Desc = strings.TrimSpace(self.GetString("desc"))
+	info.Img = strings.TrimSpace(self.GetString("img"))
 	info.Price,_ = self.GetFloat("price")
 	info.CateId,_ = self.GetInt("cate_id",0)
 	info.Inventory,_ = self.GetInt("inventory",0)
