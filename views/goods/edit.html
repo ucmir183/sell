@@ -7,7 +7,7 @@
             <div class="layui-input-inline">
                 <select name="cate_id">
                 {{range $k,$value := .cate_list}}
-                    <option value="{{$value.Id}}}">{{$value.Name}}</option>
+                    <option value="{{$value.Id}}" {{if eq $value.Id  $.info.CateId}}selected="selected"{{else}}{{end}}>{{$value.Name}}</option>
                 {{end}}
                 </select>
             </div>
