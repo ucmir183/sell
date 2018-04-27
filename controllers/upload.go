@@ -86,6 +86,7 @@ func getFormValue(p *multipart.Part) string {
 
 func (this *UploadController) Handle() {
 	f, h, err := this.GetFile("file")
+	//path := LOCAL_FILE_DIR+string(time.Now().Year())+string(time.Now().Month())+string(time.Now().Day(),)
 	t := time.Now()
 	path := LOCAL_FILE_DIR+t.Format("2006-01-02")
 
@@ -122,9 +123,7 @@ func (this *UploadController) Handle() {
 		if err == nil {
 			Url = "/" + imgPath
 		}
-		this.Data["json"] = Url
-		this.ServeJSON()
-		return
+		this.ajaxMsg(Url,MSG_OK)
 	}
 }
 

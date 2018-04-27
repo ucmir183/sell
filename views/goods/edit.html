@@ -52,6 +52,8 @@
         <div class="layui-form-item">
             <label class="layui-form-label">商品图片</label>
             <div class="layui-input-inline">
+                <img class="goods_img" src="{{.info.Img}}" style="width: 200px;height: 200px">
+                <input class="input_goods_img" name="img" type="hidden" value="{{.info.Img}}">
                 <button type="button" class="layui-btn" id="test1">
                     <i class="layui-icon">&#xe67c;</i>上传图片
                 </button>
@@ -100,9 +102,15 @@ var $;
             ,field:"file"
             ,done: function(res){
                 //上传完毕回调
+                if ( res.status == 0 ) {
+                    $(".goods_img").attr("src",res.message);
+                    $(".input_goods_img").attr("value",res.message);
+
+                }
             }
             ,error: function(){
                 //请求异常回调
+                layer.msg("上传失败");
             }
         });
 

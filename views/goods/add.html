@@ -50,6 +50,18 @@
         </div>
 
         <div class="layui-form-item">
+            <label class="layui-form-label">商品图片</label>
+            <div class="layui-input-inline">
+                <img class="goods_img" src="{{.info.Img}}" style="width: 200px;height: 200px">
+                <input class="input_goods_img" name="img" type="hidden" value="{{.info.Img}}">
+                <button type="button" class="layui-btn" id="test1">
+                    <i class="layui-icon">&#xe67c;</i>上传图片
+                </button>
+            </div>
+            <div class="layui-form-mid layui-word-aux">*</div>
+        </div>
+
+        <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn" lay-submit="" lay-filter="sub">立即提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
@@ -62,7 +74,7 @@
     var $;
     layui.config({
         base : "js/"
-    }).use(['form','element','layer','jquery'],function(){
+    }).use(['form','element','layer','jquery','upload'],function(){
         var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
         var $ = layui.jquery;
 
@@ -78,6 +90,28 @@
                 }
             }, "json");
             return false;
+        });
+
+
+        var upload = layui.upload;
+
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#test1' //绑定元素
+            ,url: '{{urlfor "UploadController.Handle"}}' //上传接口
+            ,field:"file"
+            ,done: function(res){
+                //上传完毕回调
+                if ( res.status == 0 ) {
+                    $(".goods_img").attr("src",res.message);
+                    $(".input_goods_img").attr("value",res.message);
+
+                }
+            }
+            ,error: function(){
+                //请求异常回调
+                layer.msg("上传失败");
+            }
         });
 
         //但是，如果你的HTML是动态生成的，自动渲染就会失效

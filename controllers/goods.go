@@ -5,6 +5,7 @@ import (
 	"sell/models"
 	"github.com/astaxie/beego"
 	"time"
+	"fmt"
 )
 
 type GoodsController struct {
