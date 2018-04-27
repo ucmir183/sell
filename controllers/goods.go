@@ -92,6 +92,7 @@ func (self *GoodsController) AjaxSave() {
 		m.Price,_ = self.GetFloat("price")
 		m.CateId,_ = self.GetInt("cate_id",0)
 		m.Inventory,_ = self.GetInt("inventory",0)
+		m.Status = 1
 
 		m.CreateId = self.userId
 		m.UpdateId = self.userId
@@ -106,9 +107,13 @@ func (self *GoodsController) AjaxSave() {
 
 	}
 
-	info := models.CateGetById(id)
+	info := models.GoodsGetById(id)
 	info.Name = strings.TrimSpace(self.GetString("name"))
-	info.Pid,_ = self.GetInt("pid",0)
+	info.Desc = strings.TrimSpace(self.GetString("desc"))
+	info.Price,_ = self.GetFloat("price")
+	info.CateId,_ = self.GetInt("cate_id",0)
+	info.Inventory,_ = self.GetInt("inventory",0)
+
 	info.UpdateId = self.userId
 	info.UpdateTime = time.Now().Unix()
 

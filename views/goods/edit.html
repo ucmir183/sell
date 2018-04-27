@@ -1,61 +1,63 @@
 <div class="layui-layout layui-layout-admin" style="padding-left: 40px;margin-top: 20px;">
 
 
-<form class="layui-form" action="" method="post" >
-    <div class="layui-form-item">
-        <label class="layui-form-label">商品栏目</label>
-        <div class="layui-input-inline">
-            <select name="pid">
-            {{range $k,$value := .cate_list}}
-                <option value="{{$value.Id}}}">{{$value.Name}}</option>
-            {{end}}
-            </select>
+    <form class="layui-form" action="" method="post" >
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品栏目</label>
+            <div class="layui-input-inline">
+                <select name="cate_id">
+                {{range $k,$value := .cate_list}}
+                    <option value="{{$value.Id}}}">{{$value.Name}}</option>
+                {{end}}
+                </select>
+            </div>
+
+            <div class="layui-form-mid layui-word-aux">*</div>
         </div>
 
-        <div class="layui-form-mid layui-word-aux">*</div>
-    </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">商品名称</label>
-        <div class="layui-input-inline">
-            <input type="text" name="name" id="name" lay-verify="required" autocomplete="off" placeholder="栏目名称" class="layui-input" value="{{.info.Name}}">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="name" id="name" lay-verify="required" autocomplete="off" placeholder="商品名称" class="layui-input" value="{{.info.Name}}">
+            </div>
+            <div class="layui-form-mid layui-word-aux">*</div>
         </div>
-        <div class="layui-form-mid layui-word-aux">*</div>
-    </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">商品价格</label>
-        <div class="layui-input-inline">
-            <input type="text" name="name" id="name" lay-verify="required" autocomplete="off" placeholder="栏目名称" class="layui-input" value="{{.info.Name}}">
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品价格</label>
+            <div class="layui-input-inline">
+                <input type="text" name="price" id="price" lay-verify="required" autocomplete="off" placeholder="商品价格" class="layui-input" value="{{.info.Price}}">
+            </div>
+            <div class="layui-form-mid layui-word-aux">*</div>
         </div>
-        <div class="layui-form-mid layui-word-aux">*</div>
-    </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">商品描述</label>
-        <div class="layui-input-inline">
-            <input type="text" name="name" id="name" lay-verify="required" autocomplete="off" placeholder="栏目名称" class="layui-input" value="{{.info.Name}}">
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品描述</label>
+            <div class="layui-input-inline">
+                <input type="text" name="desc" lay-verify="required" autocomplete="off" placeholder="商品描述" class="layui-input" value="{{.info.Desc}}">
+            </div>
+            <div class="layui-form-mid layui-word-aux">*</div>
         </div>
-        <div class="layui-form-mid layui-word-aux">*</div>
-    </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">商品库存</label>
-        <div class="layui-input-inline">
-            <input type="text" name="name" id="name" lay-verify="required" autocomplete="off" placeholder="栏目名称" class="layui-input" value="{{.info.Name}}">
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品库存</label>
+            <div class="layui-input-inline">
+                <input type="text" name="inventory"  lay-verify="required" autocomplete="off" placeholder="商品库存" class="layui-input" value="{{.info.Inventory}}">
+            </div>
+            <div class="layui-form-mid layui-word-aux">*</div>
         </div>
-        <div class="layui-form-mid layui-word-aux">*</div>
-    </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">商品库存</label>
-        <div class="layui-input-inline">
-            <input type="text" name="name" id="name" lay-verify="required" autocomplete="off" placeholder="栏目名称" class="layui-input" value="{{.info.Name}}">
+        <input type="hidden" id="id" name="id" value="{{.info.Id}}">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="sub">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
         </div>
-        <div class="layui-form-mid layui-word-aux">*</div>
-    </div>
 
-</form>
+    </form>
 </div>
 <script>
 var $;

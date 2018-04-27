@@ -51,11 +51,11 @@ func GoodsGetList(page, pageSize int, filters ...interface{})([]*Goods, int64) {
 }
 
 
-func GoodsGetById(id int) *Cate {
-	cate := new(Cate)
-	orm.NewOrm().QueryTable(TableName("cate")).Filter("id",id).One(cate)
+func GoodsGetById(id int) *Goods {
+	goods := new(Goods)
+	orm.NewOrm().QueryTable(TableName("goods")).Filter("id",id).One(goods)
 
-	return cate
+	return goods
 
 }
 
