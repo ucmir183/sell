@@ -5,7 +5,6 @@ import (
 	"sell/models"
 	"github.com/astaxie/beego"
 	"time"
-	"fmt"
 )
 
 type GoodsController struct {
@@ -89,7 +88,7 @@ func (self *GoodsController) AjaxSave() {
 	if id == 0 {
 		m := new(models.Goods)
 		m.Name = strings.TrimSpace(self.GetString("name"))
-		m.Name = strings.TrimSpace(self.GetString("name"))
+		m.Desc = strings.TrimSpace(self.GetString("desc"))
 		m.Img = strings.TrimSpace(self.GetString("img"))
 		m.Price,_ = self.GetFloat("price")
 		m.CateId,_ = self.GetInt("cate_id",0)
